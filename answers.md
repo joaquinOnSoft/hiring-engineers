@@ -17,3 +17,13 @@ $ vagrant ssh
 
 ## Datadog Agent installation
 
+Browse to <a href="https://app.datadoghq.com/signup ">Datadog sign up page</a> an fill the form:
+
+<img src="img/003-datadog-signup.png" width="50%"/>
+
+Optionally, you can inform about the stack that you plan to use:
+
+<img src="img/004-datadog-about-your-stack.png" width="50%"/>
+
+
+
