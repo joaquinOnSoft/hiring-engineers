@@ -37,6 +37,13 @@ $ DD_API_KEY=<YOU_API_KEY_HERE> bash -c "$(curl -L https://raw.githubusercontent
 
 <img src="img/006-datadog-copy-installation-command.png" width="60%"/>
 
+Wait until the agent installation is complete.
+
+Now we can start working with DataDog
+
+<img src="img/008-datadog-dashboard.png" width="60%"/>
+
+
 
 
 
