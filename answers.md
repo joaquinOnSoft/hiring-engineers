@@ -25,8 +25,18 @@ Optionally, you can inform about the stack that you plan to use:
 
 <img src="img/004-datadog-about-your-stack.png" width="60%"/>
  
-Choose your platform and copy you DataDog API KEY:
+Choose your platform (Ubuntu in our example) and copy your DataDog installation command:
 
 <img src="img/005-datadog-installing-your-first-agent.png" width="60%"/>
+
+Paste the installation command in the *vagrant ssh* terminal:
+
+```console
+$ DD_API_KEY=46560c80d359b6f71ef52b793b8793c8 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+```
+
+<img src="006-datadog-copy-installation-command.png" width="60%"/>
+
+
 
 
