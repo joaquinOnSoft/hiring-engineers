@@ -46,8 +46,7 @@ Now we can start working with DataDog:
 ## Collecting Metrics:
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-1. Browse to the folder */etc/datadog-agent* and edit the file *datadog.yaml*
-
+1. Browse to the folder **/etc/datadog-agent** and edit the file **datadog.yaml**
 ```console
 $ cd /etc/datadog-agent
 $ sudo nano datadog.yaml
@@ -59,6 +58,13 @@ tags: purpose:hiring, role:solutionsengineer, location:spain
 ```
 <img src="img/009-datadog-tags.png" width="60%"/>
 
+3. Restart your DataDog agent from the command line:
+```console
+$ sudo service datadog-agent restart
+```
+
+4. Click on **Events** option in you DataDog Admin panel. The new tags has been added:
+<img src="img/010-datadog-events-new-tags.png" width="60%"/>
  
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
