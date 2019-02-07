@@ -13,5 +13,7 @@ $ vagrant up
 $ vagrant ssh
 ```
 
+<img src="img/002-vagrant-ssh.png" width="50%"/>
+
 ## Datadog Agent installation
 
