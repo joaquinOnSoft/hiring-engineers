@@ -1,6 +1,6 @@
 ## Prerequisites - Setup the environment
 
-Download vagrant and install it on your computer.
+Download **vagrant** and install it on your computer.
 
 <img src="img/001-vagrant-download.png" width="60%"/>
 
