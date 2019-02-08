@@ -126,6 +126,9 @@ sudo datadog-agent status
 7. Select **MongoDB** integration and click on Install
 <img src="img/013-datadog-integrations-mongodb.png" width="60%"/>
 
+8. Follow the instructions given in the pop-up:
+<img src="img/013-datadog-integrations-mongodb.png" width="60%"/>
+
 
 ### Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 ### Change your check's collection interval so that it only submits the metric once every 45 seconds.
