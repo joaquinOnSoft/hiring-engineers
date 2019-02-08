@@ -121,7 +121,7 @@ sudo datadog-agent status
 <img src="img/011-datadog-mongodb-running.png" width="60%"/>
 
 6. Click on **Integrations** option in the DataDog admin panel
-<img src="img/012-datadog-integrations.png" width="60%"/> 
+<img src="img/012-datadog-integrations.png" width="40%"/> 
 
 7. Select **MongoDB** integration and click on Install
 <img src="img/013-datadog-integrations-mongodb.png" width="60%"/>
