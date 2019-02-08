@@ -44,7 +44,7 @@ Now we can start working with DataDog:
 <img src="img/008-datadog-dashboard.png" width="60%"/>
 
 ## Collecting Metrics:
-* Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+### Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
 1. Browse to the folder **/etc/datadog-agent** and edit the file **datadog.yaml**
 ```console
@@ -66,10 +66,67 @@ $ sudo service datadog-agent restart
 4. Click on **Events** option in you DataDog Admin panel. The new tags has been added:
 <img src="img/010-datadog-events-new-tags.png" width="60%"/>
  
-* Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
-* Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
-* Change your check's collection interval so that it only submits the metric once every 45 seconds.
-* **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+### Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+1. Now we are going to install MongoDB
+
+```console
+$ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4
+
+$ echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.0.list
+
+$ sudo apt-get update
+
+$ sudo apt-get install -y mongodb-org
+
+$ echo "mongodb-org hold" | sudo dpkg --set-selections
+$ echo "mongodb-org-server hold" | sudo dpkg --set-selections
+$ echo "mongodb-org-shell hold" | sudo dpkg --set-selections
+$ echo "mongodb-org-mongos hold" | sudo dpkg --set-selections
+$ echo "mongodb-org-tools hold" | sudo dpkg --set-selections
+
+$ sudo service mongod start
+```
+
+NOTE: See <a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/"> Install MongoDB Community Edition on Ubuntu</a> for further instructions
+
+2. We must create a configuration file called **mongo.yaml** file under the folder **/etc/datadog-agent/conf.d/mongo.d/**
+
+```console
+$ cd /etc/datadog-agent/conf.d/mongo.d/
+$ sudo nano mongo.yaml
+```
+
+This is the content added to **mongo.yaml** config file:
+
+```
+init_config:
+instances:
+    - server: mongodb://localhost:27017/admin
+```
+
+3. Set **dd-agent** as user and group owners  
+```console
+$ sudo chown dd-agent:dd-agent mongo.yaml
+```
+
+4. restart the agent.
+```console
+$ sudo service datadog-agent restart
+```
+
+5. Check the agent status. MongoDB must be up & running
+```console
+sudo datadog-agent status
+```
+<img src="img/011-datadog-mongodb-running.png" width="60%"/>
+
+ 
+
+
+
+### Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+### Change your check's collection interval so that it only submits the metric once every 45 seconds.
+### **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
 
 
