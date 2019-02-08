@@ -127,8 +127,11 @@ sudo datadog-agent status
 <img src="img/013-datadog-integrations-mongodb.png" width="60%"/>
 
 8. Follow the instructions given in the pop-up:
-<img src="img/013-datadog-integrations-mongodb.png" width="60%"/>
+<img src="img/014-datadog-integrations-mongodb-popup" width="60%"/>
 
+9. Click on **Dashboards** *(in the DataDog Admin Panel)* and select **MongoDB Overview**. You will see different graphics about MongoDB metrics:
+
+<img src="img/015-datadog-mongodb-dashboard.png" width="60%"/>
 
 ### Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 ### Change your check's collection interval so that it only submits the metric once every 45 seconds.
