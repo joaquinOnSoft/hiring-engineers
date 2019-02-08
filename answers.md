@@ -134,6 +134,62 @@ sudo datadog-agent status
 <img src="img/015-datadog-mongodb-dashboard.png" width="60%"/>
 
 ### Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+
+1. Browse to **/etc/datadog-agent/conf.d/** folder and create a file called **customagent.yaml** 
+
+```console
+$ cd /etc/datadog-agent/conf.d/
+$ nano hello.yaml
+```
+
+2. Write this code in the file:
+```console
+instances: [{}]
+```
+
+3. Browse to **/etc/datadog-agent/checks.d/** folder and create a file called **customagent.py** 
+
+```console
+$ cd /etc/datadog-agent/conf.d/
+$ nano hello.py
+```
+
+4. Write this code in the file:
+```python
+# the following try/except block will make the custom check compatible with any Agent version
+try:
+    # first, try to import the base class from old versions of the Agent...
+    from checks import AgentCheck
+except ImportError:
+    # ...if the above failed, the check is running in Agent version 6 or later
+    from datadog_checks.checks import AgentCheck
+
+from random import uniform
+
+# content of the special variable __version__ will be shown in the Agent status page
+__version__ = "1.0.0"
+
+
+class HelloCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('hello.world', uniform(0, 1000))
+```
+
+5. Change the user and group ownership of both files
+```console
+$ sudo chown dd-agent:dd-agent hello.yaml 
+$ sudo chown dd-agent:dd-agent hello.py 
+```
+6. Verify that the check is running 
+
+```
+sudo datadog-agent check hello
+```
+<img src="img/016-datadog-agent-check-running.png" width="40%"/> 
+
+
+
+
 ### Change your check's collection interval so that it only submits the metric once every 45 seconds.
 ### **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
