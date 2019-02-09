@@ -150,7 +150,7 @@ instances: [{}]
 3. Browse to **/etc/datadog-agent/checks.d/** folder and create a file called **hello.py** 
 
 ```console
-$ cd /etc/datadog-agent/conf.d/
+$ cd /etc/datadog-agent/checks.d/
 $ sudo nano hello.py
 ```
 
