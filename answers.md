@@ -156,13 +156,9 @@ $ sudo nano hello.py
 
 4. Write this code in the file:
 ```python
-# the following try/except block will make the custom check compatible with any Agent version
-try:
-    # first, try to import the base class from old versions of the Agent...
-    from checks import AgentCheck
-except ImportError:
-    # ...if the above failed, the check is running in Agent version 6 or later
-    from datadog_checks.checks import AgentCheck
+
+from checks import AgentCheck
+from datadog_checks.checks import AgentCheck
 
 from random import uniform
 
