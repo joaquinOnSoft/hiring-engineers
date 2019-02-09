@@ -177,7 +177,7 @@ $ sudo chown dd-agent:dd-agent checkvalue.py
 7. Verify that the check is running 
 
 ```
-sudo datadog-agent check hello
+sudo datadog-agent check checkvalue
 ```
 <img src="img/016-datadog-agent-check-running.png" width="60%"/> 
 
