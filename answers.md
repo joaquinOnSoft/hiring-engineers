@@ -135,11 +135,11 @@ sudo datadog-agent status
 
 ### Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-1. Browse to **/etc/datadog-agent/conf.d/** folder and create a file called **customagent.yaml** 
+1. Browse to **/etc/datadog-agent/conf.d/** folder and create a file called **hello.yaml** 
 
 ```console
 $ cd /etc/datadog-agent/conf.d/
-$ nano hello.yaml
+$ sudo nano hello.yaml
 ```
 
 2. Write this code in the file:
@@ -147,11 +147,11 @@ $ nano hello.yaml
 instances: [{}]
 ```
 
-3. Browse to **/etc/datadog-agent/checks.d/** folder and create a file called **customagent.py** 
+3. Browse to **/etc/datadog-agent/checks.d/** folder and create a file called **hello.py** 
 
 ```console
 $ cd /etc/datadog-agent/conf.d/
-$ nano hello.py
+$ sudo nano hello.py
 ```
 
 4. Write this code in the file:
@@ -185,15 +185,37 @@ $ sudo chown dd-agent:dd-agent hello.py
 ```
 sudo datadog-agent check hello
 ```
-<img src="img/016-datadog-agent-check-running.png" width="40%"/> 
+<img src="img/016-datadog-agent-check-running.png" width="60%"/> 
 
 
-
+**NOTE:** Visit <a href="https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6">Writing a custom Agent check</a> for further details.
 
 ### Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
+1. Browse to **/etc/datadog-agent/checks.d/** folder and create a file called **customagent.py** 
+
+```console
+$ cd /etc/datadog-agent/conf.d/
+$ sudo nano hello.yaml
+```
+
+2. Add these lines at the end of the file
+```console
+init_config:
+
+instances:
+  - min_collection_interval: 45
+```
+
 ### **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
+Acording to the documentation it's not required to modify the phyton file to modify the collection interval, just set the **min_collection_interval** parameter in the **.yaml** file.
 
 
+## Visualizing Data:
+### Utilize the Datadog API to create a Timeboard 
+### Set the Timeboard's timeframe to the past 5 minutes
+### Take a snapshot of this graph and use the @ notation to send it to yourself.
+### Bonus Question: What is the Anomaly graph displaying?
 
 
