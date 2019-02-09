@@ -135,53 +135,54 @@ sudo datadog-agent status
 
 ### Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-1. Browse to **/etc/datadog-agent/conf.d/** folder and create a file called **hello.yaml** 
+1. Browse to **/etc/datadog-agent/conf.d/** folder and create a file called **checkvalue.yaml** 
 
 ```console
 $ cd /etc/datadog-agent/conf.d/
-$ sudo nano hello.yaml
+$ sudo nano checkvalue.yaml
 ```
 
 2. Write this code in the file:
 ```console
-instances: [{}]
+init_config:
+
+instances:
+  [{}]
 ```
 
-3. Browse to **/etc/datadog-agent/checks.d/** folder and create a file called **hello.py** 
+3. Change the user and group ownership of both files
+```console
+$ sudo chown dd-agent:dd-agent checkvalue.py.yaml 
+```
+
+4. Browse to **/etc/datadog-agent/checks.d/** folder and create a file called **hello.py** 
 
 ```console
 $ cd /etc/datadog-agent/checks.d/
-$ sudo nano hello.py
+$ sudo nano checkvalue.py
 ```
 
-4. Write this code in the file:
+5. Write this code in the file:
 ```python
-
 from checks import AgentCheck
-from datadog_checks.checks import AgentCheck
-
-from random import uniform
-
-# content of the special variable __version__ will be shown in the Agent status page
-__version__ = "1.0.0"
-
-
 class HelloCheck(AgentCheck):
-    def check(self, instance):
-        self.gauge('hello.world', uniform(0, 1000))
+  def check(self, instance):
+    self.gauge('hello.world', 1)
 ```
 
-5. Change the user and group ownership of both files
+6. Change the user and group ownership of both files
 ```console
-$ sudo chown dd-agent:dd-agent hello.yaml 
-$ sudo chown dd-agent:dd-agent hello.py 
+$ sudo chown dd-agent:dd-agent checkvalue.py 
 ```
-6. Verify that the check is running 
+7. Verify that the check is running 
 
 ```
 sudo datadog-agent check hello
 ```
 <img src="img/016-datadog-agent-check-running.png" width="60%"/> 
+
+8. Check the metrica in Datadog
+<img src="img/016b-datadog-agent-check-running" width="60%"/> 
 
 
 **NOTE:** Visit <a href="https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6">Writing a custom Agent check</a> for further details.
@@ -192,7 +193,7 @@ sudo datadog-agent check hello
 
 ```console
 $ cd /etc/datadog-agent/conf.d/
-$ sudo nano hello.yaml
+$ sudo nano checkvalue.py.yaml
 ```
 
 2. Add these lines at the end of the file
