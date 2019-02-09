@@ -182,7 +182,7 @@ sudo datadog-agent check hello
 <img src="img/016-datadog-agent-check-running.png" width="60%"/> 
 
 8. Check the metrica in Datadog
-<img src="img/016b-datadog-agent-check-running" width="60%"/> 
+<img src="img/016b-datadog-agent-check-running.png" width="60%"/> 
 
 
 **NOTE:** Visit <a href="https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6">Writing a custom Agent check</a> for further details.
