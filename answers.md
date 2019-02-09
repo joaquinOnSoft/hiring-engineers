@@ -193,7 +193,7 @@ sudo datadog-agent check checkvalue
 
 ```console
 $ cd /etc/datadog-agent/conf.d/
-$ sudo nano checkvalue.py.yaml
+$ sudo nano checkvalue.yaml
 ```
 
 2. Add these lines at the end of the file
