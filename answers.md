@@ -127,7 +127,7 @@ sudo datadog-agent status
 <img src="img/013-datadog-integrations-mongodb.png" width="60%"/>
 
 8. Follow the instructions given in the pop-up:
-<img src="img/014-datadog-integrations-mongodb-popup" width="60%"/>
+<img src="img/014-datadog-integrations-mongodb-popup.png" width="60%"/>
 
 9. Click on **Dashboards** *(in the DataDog Admin Panel)* and select **MongoDB Overview**. You will see different graphics about MongoDB metrics:
 
@@ -214,6 +214,45 @@ Acording to the documentation it's not required to modify the phyton file to mod
 
 ## Visualizing Data:
 ### Utilize the Datadog API to create a Timeboard 
+1. Browse to **Integrations > APIs** option in the Datadog page:
+
+<img src="img/017-datadog-integration-api.png" width="60%"/> 
+
+2. Provide a name for the application key, e.g. "hiring"
+3. Click on the **Create application key** button
+4. This is the curl command that we must execute from the comman line:
+```console
+curl  -X POST -H "Content-type: application/json" \
+    -d '{
+	      "graphs" : [{
+	  "title": "My Custom Check",
+	  "definition": {
+	    "viz": "timeseries",
+	    "requests": [{"q": "avg:custom.hello{host:ubuntu-xenial}"}] 
+	    }  	
+	  },
+	  {
+	  "title": "WT Dirty Bytes (Anomalies)",
+	  "definition": {
+	    "viz": "timeseries",
+	    "requests": [{"q":"anomalies(avg:mongodb.wiredtiger.cache.tracked_dirty_bytes_in_cache{server:mongodb://localhost:27017/admin}, \u0027basic\u0027, 2)"}] 
+	    }
+	  },
+	  {
+	  "title": "My Custom Check (1h Buckets)",
+	  "definition": {
+	    "viz": "timeseries",
+	    "type":"bars",
+	    "requests": [{"q": "avg:custom.hello{host:ubuntu-xenial}.rollup(sum,3600)"}] 
+	    }
+	  }],
+      "title" : "My Custom Timeboard",
+      "description" : "Basic timeboard over my custom check and some MongoDB variables",
+      "read_only": "True"
+    }' \
+    "https://api.datadoghq.com/api/v1/dash?api_key=<API_KEY>&application_key=<APPLICATION_KEY>"
+```
+
 ### Set the Timeboard's timeframe to the past 5 minutes
 ### Take a snapshot of this graph and use the @ notation to send it to yourself.
 ### Bonus Question: What is the Anomaly graph displaying?
